@@ -1,5 +1,6 @@
 require_relative "../lib/rpn_tokenizer"
 require_relative "../lib/rpn_interpreter"
+require_relative "../lib/math_tokenizer"
 
 RSpec.configure do |config|
   config.expect_with(:rspec) do |c|
