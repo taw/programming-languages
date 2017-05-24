@@ -6,6 +6,7 @@ require_relative "../lib/lisp_tokenizer"
 # Parsers
 # RPN doesn't require a parser, you can use token stream directly
 require_relative "../lib/lisp_parser"
+require_relative "../lib/math_parser"
 
 # Interpreters
 require_relative "../lib/rpn_interpreter"
