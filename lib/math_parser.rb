@@ -11,8 +11,17 @@ class MathParser
       raise unless @tokens[0] == :")"
       @tokens.shift
       result
-    else
+    elsif @tokens[0].is_a?(Numeric)
       @tokens.shift
+    # These are _probably_ not sufficiently generic rules
+    elsif @tokens[0] == :-
+      @tokens.shift
+      [:uminus, parse_value]
+    elsif @tokens[0] == :+
+      @tokens.shift
+      [:uplus, parse_value]
+    else
+      raise "Syntax Error: #{@tokens.inspect}"
     end
   end
 
@@ -36,7 +45,7 @@ class MathParser
 
   def parse
     result = parse_expr
-    raise "Extra tokens left" unless @tokens.empty?
+    raise "Extra tokens left: #{@tokens.inspect}" unless @tokens.empty?
     result
   end
 
