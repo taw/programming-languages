@@ -1,4 +1,5 @@
 # Tokenizers
+require_relative "../lib/token"
 require_relative "../lib/tokenizer"
 require_relative "../lib/rpn_tokenizer"
 require_relative "../lib/math_tokenizer"

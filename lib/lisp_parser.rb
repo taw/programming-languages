@@ -6,22 +6,22 @@ class LispParser
 
   def parse
     return nil if @tokens.empty?
-    res = if @tokens[0] == :"("
+    res = if @tokens[0].value == :"("
       @tokens.shift
       result = []
-      until @tokens.empty? or @tokens[0] == :")"
+      until @tokens.empty? or @tokens[0].value == :")"
         result << parse
       end
-      if @tokens[0] == :")"
+      if @tokens[0].value == :")"
         @tokens.shift
         result
       else
         raise "Syntax Error: Expected )"
       end
-    elsif @tokens[0] == :")"
+    elsif @tokens[0].value == :")"
       raise "Syntax Error: Unexpected ("
     else
-      @tokens.shift
+      @tokens.shift.value
     end
     res
   end

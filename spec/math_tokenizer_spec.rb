@@ -4,19 +4,19 @@ describe MathTokenizer do
   end
 
   it "numbers" do
-    MathTokenizer.tokenize("2 3 4 -5 7.2 3.14 -9.8").should == [2, 3, 4, :-, 5, 7.2, 3.14, :-, 9.8]
+    MathTokenizer.tokenize("2 3 4 -5 7.2 3.14 -9.8").map(&:value).should == [2, 3, 4, :-, 5, 7.2, 3.14, :-, 9.8]
   end
 
   it "symbols" do
-    MathTokenizer.tokenize("+ - * / **").should == [:+, :-, :*, :/, :**]
+    MathTokenizer.tokenize("+ - * / **").map(&:value).should == [:+, :-, :*, :/, :**]
   end
 
   it "spacing" do
-    MathTokenizer.tokenize("2 +  3   \n- 4").should == [2, :+, 3, :-, 4]
-    MathTokenizer.tokenize("2+3*4").should == [2, :+, 3, :*, 4]
+    MathTokenizer.tokenize("2 +  3   \n- 4").map(&:value).should == [2, :+, 3, :-, 4]
+    MathTokenizer.tokenize("2+3*4").map(&:value).should == [2, :+, 3, :*, 4]
   end
 
   it "parenthesis" do
-    MathTokenizer.tokenize("(2 +  (3-4))").should == [:"(", 2, :+, :"(", 3, :-, 4, :")", :")"]
+    MathTokenizer.tokenize("(2 +  (3-4))").map(&:value).should == [:"(", 2, :+, :"(", 3, :-, 4, :")", :")"]
   end
 end

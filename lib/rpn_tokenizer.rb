@@ -3,11 +3,11 @@ class RPNTokenizer < Tokenizer
     if @s.scan(/\s+/)
       # next
     elsif @s.scan(/-?\d+(\.\d*)?/)
-      @tokens << @s[0].to_f
+      new_token :number, @s[0].to_f
     elsif @s.scan(/\S+/)
-      @tokens << @s[0].to_sym
+      new_token :operator, @s[0].to_sym
     else
-      raise "Syntax Error: #{@s}"
+      syntax_error
     end
   end
 end

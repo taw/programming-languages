@@ -4,19 +4,19 @@ describe LispTokenizer do
   end
 
   it "numbers" do
-    LispTokenizer.tokenize("2 3 4 -5 7.2 3.14 -9.8").should == [2, 3, 4, -5, 7.2, 3.14, -9.8]
+    LispTokenizer.tokenize("2 3 4 -5 7.2 3.14 -9.8").map(&:value).should == [2, 3, 4, -5, 7.2, 3.14, -9.8]
   end
 
   it "symbols" do
-    LispTokenizer.tokenize("+ - * / **").should == [:+, :-, :*, :/, :**]
+    LispTokenizer.tokenize("+ - * / **").map(&:value).should == [:+, :-, :*, :/, :**]
   end
 
   it "spacing" do
-    LispTokenizer.tokenize("2 +  3   \n- 4").should == [2, :+, 3, :-, 4]
-    LispTokenizer.tokenize("2+3*4").should == [:"2+3*4"]
+    LispTokenizer.tokenize("2 +  3   \n- 4").map(&:value).should == [2, :+, 3, :-, 4]
+    LispTokenizer.tokenize("2+3*4").map(&:value).should == [:"2+3*4"]
   end
 
   it "parenthesis" do
-    LispTokenizer.tokenize("(1+ (+ 2 3))").should == [:"(", :"1+", :"(", :+, 2, 3, :")", :")"]
+    LispTokenizer.tokenize("(1+ (+ 2 3))").map(&:value).should == [:"(", :"1+", :"(", :+, 2, 3, :")", :")"]
   end
 end

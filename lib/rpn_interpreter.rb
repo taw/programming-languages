@@ -3,13 +3,14 @@ class RPNInterpreter
     tokens = RPNTokenizer.tokenize(str)
     stack = []
     until tokens.empty?
-      case token = tokens.shift
-      when Numeric
-        stack << token
-      when :+, :-, :/, :*
+      token = tokens.shift
+      case token.type
+      when :number
+        stack << token.value
+      when :operator
         b = stack.pop
         a = stack.pop
-        stack << a.send(token, b)
+        stack << a.send(token.value, b)
       else
         raise "Syntax Error: Unknown token #{token}"
       end

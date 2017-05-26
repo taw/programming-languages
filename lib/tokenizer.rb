@@ -14,6 +14,14 @@ class Tokenizer
     @tokens
   end
 
+  def new_token(type, value=nil)
+    @tokens << Token.new(nil, nil, nil, nil, type, value)
+  end
+
+  def syntax_error
+    raise "Syntax Error: #{@s}"
+  end
+
   def self.tokenize(str)
     new(str).tokenize
   end
