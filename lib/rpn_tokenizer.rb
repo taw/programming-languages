@@ -1,11 +1,20 @@
+require "strscan"
+
 class RPNTokenizer
   def self.tokenize(str)
-    str.split(/\s+/).map do |token|
-      if token =~ /\A-?\d+(\.\d*)?\z/
-        token.to_f
+    tokens = []
+    s = StringScanner.new(str)
+    until s.eos?
+      if s.scan(/\s+/)
+        # next
+      elsif s.scan(/-?\d+(\.\d*)?/)
+        tokens << s[0].to_f
+      elsif s.scan(/\S+/)
+        tokens << s[0].to_sym
       else
-        token.to_sym
+        raise "Syntax Error: #{s}"
       end
     end
+    tokens
   end
 end
