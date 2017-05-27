@@ -19,4 +19,10 @@ describe MathTokenizer do
   it "parenthesis" do
     MathTokenizer.tokenize("(2 +  (3-4))").map(&:value).should == [:"(", 2, :+, :"(", 3, :-, 4, :")", :")"]
   end
+
+  it "syntax error" do
+    proc{
+      MathTokenizer.tokenize("2 + fail")
+    }.should raise_error("Syntax Error at 1:5: fail")
+  end
 end

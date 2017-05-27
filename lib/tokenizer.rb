@@ -39,7 +39,13 @@ class Tokenizer
   end
 
   def syntax_error
-    raise "Syntax Error: #{@s}"
+    rest_size = @str.size - @pos
+    if rest_size  > 100
+      rest = @str[@pos, 100] + "..."
+    else
+      rest = @str[@pos..-1]
+    end
+    raise "Syntax Error at #{@line}:#{@char}: #{rest}"
   end
 
   def self.tokenize(str)
