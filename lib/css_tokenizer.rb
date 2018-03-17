@@ -12,7 +12,7 @@ class CssTokenizer < Tokenizer
       new_token :semicolon
     elsif @s.scan(/:/)
       new_token :colon
-    elsif @s.scan(/[a-zA-Z0-9\.\#]+/)
+    elsif @s.scan(/[a-zA-Z0-9\-\.\#]+/)
       new_token :word, @s[0]
     else
       syntax_error
