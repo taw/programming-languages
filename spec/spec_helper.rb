@@ -5,6 +5,7 @@ require_relative "../lib/rpn_tokenizer"
 require_relative "../lib/math_tokenizer"
 require_relative "../lib/lisp_tokenizer"
 require_relative "../lib/css_tokenizer"
+require_relative "../lib/regexp_tokenizer"
 
 # Parsers
 # RPN doesn't require a parser, you can use token stream directly
