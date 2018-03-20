@@ -1,4 +1,4 @@
-describe LispParser do
+describe CssParser do
   it do
     CssParser.parse("").should == []
   end

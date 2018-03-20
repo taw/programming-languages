@@ -12,6 +12,7 @@ require_relative "../lib/regexp_tokenizer"
 require_relative "../lib/lisp_parser"
 require_relative "../lib/math_parser"
 require_relative "../lib/css_parser"
+require_relative "../lib/regexp_parser"
 
 # Interpreters
 require_relative "../lib/rpn_interpreter"
