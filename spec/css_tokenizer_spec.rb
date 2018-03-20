@@ -36,8 +36,4 @@ describe CssTokenizer do
       [:close],
     )
   end
-
-  def should_tokenize_to(str, *tokens)
-    CssTokenizer.tokenize(str).map{|t| [t.type, *t.value]}.should == tokens
-  end
 end

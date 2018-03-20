@@ -52,8 +52,4 @@ describe RegexpTokenizer do
       [:close],
     )
   end
-
-  def should_tokenize_to(str, *tokens)
-    RegexpTokenizer.tokenize(str).map{|t| [t.type, *t.value]}.should == tokens
-  end
 end

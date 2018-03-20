@@ -20,7 +20,12 @@ RSpec.configure do |config|
   config.expect_with(:rspec) do |c|
     c.syntax = :should
   end
+
   config.define_derived_metadata do |meta|
     meta[:aggregate_failures] = true
+  end
+
+  def should_tokenize_to(str, *tokens)
+    described_class.tokenize(str).map{|t| [t.type, *t.value]}.should == tokens
   end
 end
