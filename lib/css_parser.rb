@@ -1,7 +1,7 @@
 CssRule = Struct.new(:selectors, :properties, keyword_init: true)
 CssProperty = Struct.new(:key, :value, keyword_init: true)
 
-class CssParser
+class CssParser < Parser
   def initialize(str)
     @str = str
     @tokens = CssTokenizer.tokenize(str)
@@ -57,19 +57,5 @@ class CssParser
     value << shift_token(:word) while next_token_type == :word
     shift_token(:semicolon)
     CssProperty.new(key: key, value: value)
-  end
-
-  def next_token_type
-    return :eof if @tokens.empty?
-    @tokens[0].type
-  end
-
-  def shift_token(type)
-    raise "Expected token #{type}, got #{next_token_type}" unless next_token_type == type
-    @tokens.shift.value
-  end
-
-  def self.parse(str)
-    new(str).parse
   end
 end

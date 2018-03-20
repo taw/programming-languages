@@ -1,4 +1,4 @@
-class LispParser
+class LispParser < Parser
   def initialize(str)
     @str = str
     @tokens = LispTokenizer.tokenize(str)
@@ -24,9 +24,5 @@ class LispParser
       @tokens.shift.value
     end
     res
-  end
-
-  def self.parse(str)
-    new(str).parse
   end
 end

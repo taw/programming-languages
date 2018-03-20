@@ -1,4 +1,4 @@
-class MathParser
+class MathParser < Parser
   def initialize(str)
     @str = str
     @tokens = MathTokenizer.tokenize(str)
@@ -47,9 +47,5 @@ class MathParser
     result = parse_expr
     raise "Extra tokens left: #{@tokens.inspect}" unless @tokens.empty?
     result
-  end
-
-  def self.parse(str)
-    new(str).parse
   end
 end
